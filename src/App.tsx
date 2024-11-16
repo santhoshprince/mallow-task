@@ -11,13 +11,12 @@ const App: React.FC = () => {
     <Provider store={store}>
       <Router>
         <Routes>
-          <Route path="/" element={<LoginPage />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route
             path="/users"
             element={
               <PrivateRoute>
                 <div>
-                
                   <UserList />
                 </div>
               </PrivateRoute>
