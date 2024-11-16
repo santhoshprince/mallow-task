@@ -1,0 +1,205 @@
+body {
+  background-color: #f0f2f5;
+  color: var(--color-dark);
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+.button-style{
+  width: 100%;
+    display: flex;
+    justify-content: right;
+    margin-bottom: 20px;
+}
+.user-card {
+  border: 1px solid #f0f0f0;
+  transition: all 0.3s ease-in-out;
+}
+
+.user-card:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.card-actions {
+  display: none;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.user-card:hover .card-actions {
+  display: flex;
+}
+
+/* General container for the UserList */
+.user-list-container {
+  padding: 20px;
+  background-color: #fff;  /* Light background color for the entire section */
+  border-radius: 8px;  /* Rounded corners for the container */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for the container */
+  max-width: 1200px;
+  margin: 20px auto;
+}
+
+/* Header and Action buttons */
+.header-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.left-actions {
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  width: 250px;
+  margin-right: 10px;
+  border-radius: 5px;
+}
+
+.create-btn {
+  margin-left: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.create-btn:hover {
+  background-color: #45a049;
+}
+
+.view-toggle button {
+  margin-left: 10px;
+  background-color: #f4f4f4;
+  border: 1px solid #ddd;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.view-toggle .active {
+  background-color: #1890ff;
+  color: white;
+  border: 1px solid #1890ff;
+}
+
+/* Table container */
+.table-container {
+  margin-top: 20px;
+  overflow-x: auto;
+}
+
+.custom-table {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Card container */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+/* Individual user card */
+.user-card {
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.avatar-container {
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+}
+
+.user-avatar {
+  border: 2px solid #eee;
+}
+
+/* Card content */
+.card-content {
+  text-align: center;
+  padding: 10px;
+}
+
+.card-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+/* Button styles inside the card */
+.edit-btn,
+.delete-btn {
+  margin-right: 10px;
+}
+
+.edit-btn {
+  background-color: #6b5b95;
+  color: white;
+  padding: 8px;
+  border-radius: 5px;
+  transition: all 0.3s;
+}
+
+.delete-btn {
+  background-color: #ff4d4f;
+  color: white;
+  padding: 8px;
+  border-radius: 5px;
+  transition: all 0.3s;
+}
+
+.edit-btn:hover {
+  background-color: #5a4c85;
+}
+
+.delete-btn:hover {
+  background-color: #e23c3d;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 768px) {
+  .left-actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .search-input {
+    width: 100%;
+    margin-right: 0;
+  }
+
+  .view-toggle {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+  }
+
+  .card-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
