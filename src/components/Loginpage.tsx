@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Form, Input, Button, message, Card, Checkbox } from 'antd';
+import { Form, Input, Button, message, Card,Checkbox } from 'antd';
 import axios from 'axios';
 
 const LoginPage: React.FC = () => {
@@ -12,7 +12,7 @@ const LoginPage: React.FC = () => {
     password: 'cityslicka',
   };
 
-  const handleLogin = async (values: { email: string; password: string; remember: boolean }) => {
+  const handleLogin = async (values: { email: string; password: string }) => {
     setLoading(true);
 
     if (
@@ -30,22 +30,25 @@ const LoginPage: React.FC = () => {
         password: values.password,
       });
 
-      // Save token in localStorage or sessionStorage based on "Remember Me"
-      if (values.remember) {
-        localStorage.setItem('token', response.data.token);
+      console.log('Login successful', response.data); 
+
+      const token = response.data.token;
+      if (token) {
+        localStorage.setItem('token', token);
       } else {
-        sessionStorage.setItem('token', response.data.token);
+        sessionStorage.setItem('token', token);
       }
 
       message.success('Login successful!');
-      navigate('/users');
+      navigate('/users'); 
     } catch (error: any) {
       console.error('Login error:', error);
 
+     
       if (error.response && error.response.data.error) {
         message.error(error.response.data.error);
-        message.error('Something went wrong. Please try again.');
       }
+      message.error('Something went wrong. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -60,7 +63,7 @@ const LoginPage: React.FC = () => {
           borderRadius: '8px',
         }}
       >
-        <Form onFinish={handleLogin} initialValues={{ remember: true }}>
+        <Form onFinish={handleLogin}>
           <Form.Item
             name="email"
             rules={[{ required: true, message: 'Please input your email!' }]}
@@ -73,14 +76,15 @@ const LoginPage: React.FC = () => {
           >
             <Input.Password placeholder="Password" />
           </Form.Item>
-          {/* <Form.Item name="remember" valuePropName="checked">
+          <Form.Item name="remember" valuePropName="checked">
             <Checkbox>Remember Me</Checkbox>
-          </Form.Item> */}
+          </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit" loading={loading} block>
               Login
             </Button>
           </Form.Item>
+         
         </Form>
       </Card>
     </div>
@@ -88,3 +92,5 @@ const LoginPage: React.FC = () => {
 };
 
 export default LoginPage;
+
+
