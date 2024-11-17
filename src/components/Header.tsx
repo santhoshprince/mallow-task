@@ -24,7 +24,7 @@ const UserHeader: React.FC = () => {
             icon={<LogoutOutlined />}
             style={{ backgroundColor: "#ff4d4f" }}
           >
-            Logout
+           
           </Button>
         </div>
       )}
