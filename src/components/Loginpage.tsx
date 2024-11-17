@@ -73,9 +73,9 @@ const LoginPage: React.FC = () => {
           >
             <Input.Password placeholder="Password" />
           </Form.Item>
-          <Form.Item name="remember" valuePropName="checked">
+          {/* <Form.Item name="remember" valuePropName="checked">
             <Checkbox>Remember Me</Checkbox>
-          </Form.Item>
+          </Form.Item> */}
           <Form.Item>
             <Button type="primary" htmlType="submit" loading={loading} block>
               Login
