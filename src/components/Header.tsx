@@ -6,18 +6,29 @@ import { LogoutOutlined } from "@ant-design/icons";
 const UserHeader: React.FC = () => {
   const navigate = useNavigate();
 
+  const isLoggedIn = !!localStorage.getItem('token');
+
   const handleLogout = () => {
     localStorage.removeItem('token'); 
-    navigate('/login');
+    navigate('/login'); 
   };
 
   return (
-    <div className="app-header">
-    <h1 className="header-title">User</h1>
-    <Button type="primary" onClick={handleLogout} icon={<LogoutOutlined />} style={{backgroundColor:"#ff4d4f"}}>
-     
-    </Button>
-  </div>
+    <>
+      {isLoggedIn && ( // Show the header only if the user is logged in
+        <div className="app-header">
+          <h1 className="header-title">User</h1>
+          <Button
+            type="primary"
+            onClick={handleLogout}
+            icon={<LogoutOutlined />}
+            style={{ backgroundColor: "#ff4d4f" }}
+          >
+            Logout
+          </Button>
+        </div>
+      )}
+    </>
   );
 };
 

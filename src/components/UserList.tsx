@@ -35,20 +35,25 @@ const UserList: React.FC = () => {
   );
 
   const columns = [
-    { title: 'ID', dataIndex: 'id', key: 'id' },
-    { title: 'Name', dataIndex: 'first_name', key: 'first_name' },
-    { title: 'Email', dataIndex: 'email', key: 'email' },
     {
       title: 'Avatar',
       key: 'avatar',
       render: (_: any, record: User) => <Avatar src={record.avatar} size="large" />,
+
     },
+    { title: 'Email', dataIndex: 'email', key: 'email' },
+    { title: 'First Name', dataIndex: 'first_name', key: 'first_name' },
+    // { title: 'ID', dataIndex: 'id', key: 'id' },
+  
+    { title: 'Last Name', dataIndex: 'last_name', key: 'last_name' },
+   
+    
     {
       title: 'Actions',
       key: 'actions',
       render: (_: any, record: User) => (
         <div>
-          <EditUser user={record} />
+         <EditUser user={record} viewMode="table" />
           <Button onClick={() => handleDelete(record.id)} className="delete-btn">
             Delete
           </Button>
@@ -120,11 +125,7 @@ const UserList: React.FC = () => {
                   <p>{user.email}</p>
                 </div>
                 <div className="card-actions">
-                  <Button
-                    icon={<EditOutlined />}
-                    shape="circle"
-                    className="edit-btn"
-                  />
+                <EditUser user={user} viewMode="card" />
                   <Button
                     icon={<DeleteOutlined />}
                     shape="circle"

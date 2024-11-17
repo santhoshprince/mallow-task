@@ -5,12 +5,14 @@ import { useDispatch } from 'react-redux';
 import { updateUserDetails } from '../redux/actions/userActions';
 import { Button, Input, Form, Modal } from 'antd';
 import { User } from '../types/User';
+import {EditOutlined} from "@ant-design/icons";
 
 interface EditUserProps {
   user: User;
+  viewMode: 'table' | 'card';
 }
 
-const EditUser: React.FC<EditUserProps> = ({ user }) => {
+const EditUser: React.FC<EditUserProps> = ({ user ,viewMode}) => {
   const [isVisible, setIsVisible] = useState(false);
   const [firstName, setFirstName] = useState(user.first_name);
   const [lastName, setLastName] = useState(user.last_name);
@@ -41,9 +43,18 @@ const EditUser: React.FC<EditUserProps> = ({ user }) => {
 
   return (
     <>
-      <Button type="primary" onClick={showModal} style={{marginRight:"10px"}}>
-        Edit
-      </Button>
+     {viewMode === 'table' ? (
+        <Button type="primary" onClick={showModal} style={{ marginRight: '10px' }}>
+          Edit
+        </Button>
+      ) : (
+        <Button
+          icon={<EditOutlined />}
+          shape="circle"
+          className="edit-btn"
+          onClick={showModal}
+        />
+      )}
       <Modal
         title="Edit User"
         visible={isVisible}
