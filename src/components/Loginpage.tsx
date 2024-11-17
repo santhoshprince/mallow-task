@@ -1,4 +1,4 @@
-// src/components/LoginPage.tsx
+
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -9,22 +9,41 @@ const LoginPage: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+
+  const defaultCredentials = {
+    email: 'eve.holt@reqres.in',
+    password: 'cityslicka',
+  };
+
   const handleLogin = async (values: { email: string; password: string }) => {
     setLoading(true);
+
+  
+    if (
+      values.email !== defaultCredentials.email ||
+      values.password !== defaultCredentials.password
+    ) {
+      message.error('User not found');
+      setLoading(false);
+      return; 
+    }
+
     try {
       const response = await axios.post('https://reqres.in/api/login', {
         email: values.email,
         password: values.password,
       });
 
-      // Store the token from the response
+    
       localStorage.setItem('token', response.data.token);
       message.success('Login successful!');
-      navigate('/users'); // Redirect to user list layout
+      navigate('/users'); 
     } catch (error: any) {
+      console.error('Login error:', error);
+
+      
       if (error.response && error.response.data.error) {
         message.error(error.response.data.error);
-      } else {
         message.error('Something went wrong. Please try again.');
       }
     } finally {
