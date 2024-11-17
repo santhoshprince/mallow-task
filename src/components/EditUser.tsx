@@ -41,8 +41,8 @@ const EditUser: React.FC<EditUserProps> = ({ user }) => {
 
   return (
     <>
-      <Button type="primary" onClick={showModal}>
-        Edit User
+      <Button type="primary" onClick={showModal} style={{marginRight:"10px"}}>
+        Edit
       </Button>
       <Modal
         title="Edit User"

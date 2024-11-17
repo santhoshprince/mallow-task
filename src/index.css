@@ -10,6 +10,27 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Header.css */
+.app-header {
+  background-color: #001529; 
+  color: white;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 64px; 
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.header-title {
+  margin: 0;
+  font-size: 18px;
+  color: white;
+}
+
+
+
 .button-style{
   width: 100%;
     display: flex;
@@ -36,12 +57,11 @@ code {
   display: flex;
 }
 
-/* General container for the UserList */
 .user-list-container {
   padding: 20px;
-  background-color: #fff;  /* Light background color for the entire section */
-  border-radius: 8px;  /* Rounded corners for the container */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for the container */
+  background-color: #fff; 
+  border-radius: 8px; 
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
   max-width: 1200px;
   margin: 20px auto;
 }
@@ -196,10 +216,118 @@ code {
     justify-content: flex-end;
     margin-top: 10px;
   }
-
   .card-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
   }
+}
+/* Center content inside the card */
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.user-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  padding-bottom: 20px;
+  background-color: white; /* Default background color */
+  overflow: hidden; /* Ensure the overlay doesn't overflow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 300px; /* Set a fixed height for the card */
+}
+
+.user-card:hover {
+  transform: translateY(-5px); /* Lift the card slightly */
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Add hover shadow */
+}
+
+/* Black overlay effect */
+.user-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+  opacity: 0; /* Hidden by default */
+  transition: opacity 0.3s ease;
+  filter: blur(5px); 
+  pointer-events: none; /* Prevent overlay from interfering with interactions */
+}
+
+.user-card:hover::before {
+  opacity: 1; 
+}
+
+
+.user-card img {
+  width: 100%; 
+  height: 100%;
+  object-fit: cover; 
+  transition: filter 0.3s ease; 
+}
+
+.user-card:hover img {
+  filter: blur(5px); 
+}
+.card-actions {
+  position: absolute;
+  display: none;
+  gap: 10px;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  top: 50%;
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+}
+
+.user-card:hover .card-actions {
+  display: flex;
+}
+
+.avatar-container {
+  margin: 20px 0;
+}
+
+.card-content h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.card-content p {
+  font-size: 14px;
+  color: gray;
+  margin: 0;
+}
+
+.edit-btn {
+  background-color: #1890ff;
+  color: white;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.edit-btn:hover {
+  background-color: #40a9ff;
+}
+
+.delete-btn {
+  background-color: #ff4d4f;
+  color: white;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.delete-btn:hover {
+  background-color: #ff7875;
 }

@@ -59,19 +59,8 @@ const UserList: React.FC = () => {
 
   return (
     <div className="user-list-container">
-      <UserHeader />
-
       <div className="header-actions">
-        <div className="left-actions">
-          <Input
-            placeholder="Search User"
-            value={searchQuery}
-            onChange={handleSearchChange}
-            className="search-input"
-            prefix={<SearchOutlined />}
-          />
-           <CreateUser />
-        </div>
+       
         <div className="view-toggle">
           <Button
             onClick={() => setViewMode('table')}
@@ -85,6 +74,16 @@ const UserList: React.FC = () => {
           >
             Card
           </Button>
+        </div>
+        <div className="left-actions">
+          <Input
+            placeholder="Search User"
+            value={searchQuery}
+            onChange={handleSearchChange}
+            className="search-input"
+            prefix={<SearchOutlined />}
+          />
+           <CreateUser />
         </div>
       </div>
 

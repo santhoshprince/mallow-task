@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from 'antd';
-
+import { LogoutOutlined } from "@ant-design/icons";
 
 const UserHeader: React.FC = () => {
   const navigate = useNavigate();
@@ -12,12 +12,12 @@ const UserHeader: React.FC = () => {
   };
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
-
-      <Button type="primary" danger onClick={handleLogout}>
-        Logout
-      </Button>
-    </div>
+    <div className="app-header">
+    <h1 className="header-title">User</h1>
+    <Button type="primary" onClick={handleLogout} icon={<LogoutOutlined />} style={{backgroundColor:"#ff4d4f"}}>
+     
+    </Button>
+  </div>
   );
 };
 

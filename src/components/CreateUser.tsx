@@ -1,18 +1,14 @@
-// src/components/CreateUser.tsx
-
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { createUser } from '../redux/actions/userActions';
-import { Button, Input, Form, Modal } from 'antd';
-import { User } from '../types/User';
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { createUser } from "../redux/actions/userActions";
+import { Button, Input, Form, Modal } from "antd";
+import { User } from "../types/User";
 
 const CreateUser: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [avatar, setAvatar] = useState('');
   const dispatch = useDispatch();
+
+  const [form] = Form.useForm(); // Ant Design form instance
 
   const showModal = () => {
     setIsVisible(true);
@@ -20,19 +16,21 @@ const CreateUser: React.FC = () => {
 
   const handleCancel = () => {
     setIsVisible(false);
+    form.resetFields(); // Reset the form fields when the modal is closed
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (values: { firstName: string; lastName: string; email: string; avatar: string }) => {
     const newUser: User = {
       id: Date.now(),
-      first_name: firstName,
-      last_name: lastName,
-      email,
-      avatar,
+      first_name: values.firstName,
+      last_name: values.lastName,
+      email: values.email,
+      avatar: values.avatar,
     };
 
     dispatch(createUser(newUser));
     setIsVisible(false);
+    form.resetFields(); // Reset form after successful submission
   };
 
   return (
@@ -44,20 +42,55 @@ const CreateUser: React.FC = () => {
         title="Create New User"
         visible={isVisible}
         onCancel={handleCancel}
-        onOk={handleSubmit}
+        footer={[
+          <Button key="cancel" onClick={handleCancel}>
+            Cancel
+          </Button>,
+          <Button
+            key="submit"
+            type="primary"
+            htmlType="submit"
+            onClick={() => form.submit()} // Trigger form submission
+          >
+            Submit
+          </Button>,
+        ]}
       >
-        <Form layout="vertical">
-          <Form.Item label="First Name">
-            <Input value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+        <Form
+          form={form}
+          layout="vertical"
+          onFinish={handleSubmit} // Triggered only when the form is valid
+        >
+          <Form.Item
+            label="First Name"
+            name="firstName"
+            rules={[{ required: true, message: "Please enter your first name!" }]}
+          >
+            <Input />
           </Form.Item>
-          <Form.Item label="Last Name">
-            <Input value={lastName} onChange={(e) => setLastName(e.target.value)} />
+          <Form.Item
+            label="Last Name"
+            name="lastName"
+            rules={[{ required: true, message: "Please enter your last name!" }]}
+          >
+            <Input />
           </Form.Item>
-          <Form.Item label="Email">
-            <Input value={email} onChange={(e) => setEmail(e.target.value)} />
+          <Form.Item
+            label="Email"
+            name="email"
+            rules={[
+              { required: true, message: "Please enter your email!" },
+              { type: "email", message: "Please enter a valid email address!" },
+            ]}
+          >
+            <Input />
           </Form.Item>
-          <Form.Item label="Avatar URL">
-            <Input value={avatar} onChange={(e) => setAvatar(e.target.value)} />
+          <Form.Item
+            label="Avatar URL"
+            name="avatar"
+            rules={[{ required: true, message: "Please enter an avatar URL!" }]}
+          >
+            <Input />
           </Form.Item>
         </Form>
       </Modal>

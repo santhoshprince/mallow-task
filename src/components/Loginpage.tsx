@@ -54,7 +54,7 @@ const LoginPage: React.FC = () => {
   return (
     <div style={{ maxWidth: '300px', margin: '100px auto' }}>
       <h2>Login</h2>
-      <Form onFinish={handleLogin}>
+      <Form onFinish={handleLogin} initialValues={defaultCredentials}>
         <Form.Item
           name="email"
           rules={[{ required: true, message: 'Please input your email!' }]}
