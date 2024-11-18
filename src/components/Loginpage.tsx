@@ -63,7 +63,7 @@ const LoginPage: React.FC = () => {
           borderRadius: '8px',
         }}
       >
-        <Form onFinish={handleLogin}>
+        <Form onFinish={handleLogin} initialValues={defaultCredentials}>
           <Form.Item
             name="email"
             rules={[{ required: true, message: 'Please input your email!' }]}
